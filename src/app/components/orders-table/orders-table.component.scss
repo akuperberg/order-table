@@ -1,6 +1,10 @@
 table {
   width: 100%;
   border-spacing: 0 10px;
+  margin-top: 35px;
+  @media screen and (max-width: 768px) {
+    margin-top: 5px;
+  }
 
   td {
     padding: 20px;
@@ -119,10 +123,6 @@ table {
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px 10px;
-  margin-bottom: 35px;
-  @media screen and (max-width: 768px) {
-    margin-bottom: 5px;
-  }
 
   &.flex {
     display: flex;
@@ -137,7 +137,15 @@ table {
   @media screen and (max-width: 768px) {
     flex-basis: 100%;
   }
-  input {
-    margin-right: 10px;
+  label {
+    padding-left: 6px;
   }
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: 35px;
 }
