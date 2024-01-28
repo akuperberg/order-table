@@ -1,7 +1,7 @@
 import {
   OrdersTableComponent,
   init_orders_table_component
-} from "./chunk-UMM4BEC7.mjs";
+} from "./chunk-DKKJGVAR.mjs";
 import {
   TestBed,
   __async,
@@ -14,6 +14,24 @@ var require_orders_table_component_spec = __commonJS({
   "src/app/components/orders-table/orders-table.component.spec.ts"(exports) {
     init_testing();
     init_orders_table_component();
+    var expectedData = [
+      {
+        status: "Active",
+        supplierName: "Jakub Zavazal",
+        month: "March",
+        phase: "Deployment",
+        internalOrder: 10024234,
+        amount: 5120
+      },
+      {
+        status: "Active",
+        supplierName: "Jonathan Holden",
+        month: "April",
+        phase: "Research",
+        internalOrder: 10024299,
+        amount: 6820
+      }
+    ];
     describe("OrdersTableComponent", () => {
       let component;
       let fixture;
@@ -33,24 +51,7 @@ var require_orders_table_component_spec = __commonJS({
         component.isPending = false;
         component.isWaiting = false;
         component.filterData();
-        expect(component.filteredData).toEqual([
-          {
-            status: "Active",
-            supplierName: "Jakub Zavazal",
-            month: "March",
-            phase: "Deployment",
-            internalOrder: 10024234,
-            amount: 5120
-          },
-          {
-            status: "Active",
-            supplierName: "Jonathan Holden",
-            month: "April",
-            phase: "Research",
-            internalOrder: 1002429111,
-            amount: 6820
-          }
-        ]);
+        expect(component.filteredData).toEqual(expectedData);
       });
       it('should display "No data" when there is no filtered data', () => {
         component.filteredData = [];
@@ -58,6 +59,12 @@ var require_orders_table_component_spec = __commonJS({
         const noDataElement = fixture.nativeElement.querySelector(".no-data");
         expect(noDataElement).toBeTruthy();
         expect(noDataElement.textContent).toContain("No data");
+      });
+      it("should display the correct classes for status highlighting", () => {
+        component.filteredData = expectedData;
+        fixture.detectChanges();
+        const statusCells = fixture.nativeElement.querySelectorAll(".status__highlight");
+        expect(statusCells[0].classList).toContain("active");
       });
     });
   }

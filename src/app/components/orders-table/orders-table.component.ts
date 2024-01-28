@@ -22,7 +22,6 @@ export class OrdersTableComponent {
     this.filterData();
   }
 
-
   public filterData() {
     this.filteredData = this.ordersData.filter(order =>
       (this.isActive && order.status === 'Active') ||

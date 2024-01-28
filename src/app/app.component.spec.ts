@@ -14,9 +14,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'order-table-project' title`, () => {
+  it(`should have the 'Orders table' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('order-table-project');
+    expect(app.title).toEqual('Orders table');
   });
 });

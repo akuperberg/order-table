@@ -1,6 +1,25 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { OrdersTableComponent } from "./orders-table.component";
 
+const expectedData = [
+  {
+    status: "Active",
+    supplierName: "Jakub Zavazal",
+    month: "March",
+    phase: "Deployment",
+    internalOrder: 10024234,
+    amount: 5120,
+  },
+  {
+    status: "Active",
+    supplierName: "Jonathan Holden",
+    month: "April",
+    phase: "Research",
+    internalOrder: 10024299,
+    amount: 6820,
+  },
+]
+
 describe("OrdersTableComponent", () => {
   let component: OrdersTableComponent;
   let fixture: ComponentFixture<OrdersTableComponent>;
@@ -25,24 +44,7 @@ describe("OrdersTableComponent", () => {
     component.isWaiting = false;
     component.filterData();
 
-    expect(component.filteredData).toEqual([
-      {
-        status: "Active",
-        supplierName: "Jakub Zavazal",
-        month: "March",
-        phase: "Deployment",
-        internalOrder: 10024234,
-        amount: 5120,
-      },
-      {
-        status: "Active",
-        supplierName: "Jonathan Holden",
-        month: "April",
-        phase: "Research",
-        internalOrder: 10024299,
-        amount: 6820,
-      },
-    ]);
+    expect(component.filteredData).toEqual(expectedData);
   });
 
   it('should display "No data" when there is no filtered data', () => {
@@ -52,5 +54,13 @@ describe("OrdersTableComponent", () => {
     const noDataElement = fixture.nativeElement.querySelector('.no-data');
     expect(noDataElement).toBeTruthy();
     expect(noDataElement.textContent).toContain('No data');
+  });
+
+  it('should display the correct classes for status highlighting', () => {
+    component.filteredData = expectedData;
+    fixture.detectChanges();
+
+    const statusCells = fixture.nativeElement.querySelectorAll('.status__highlight');
+    expect(statusCells[0].classList).toContain('active');
   });
 });

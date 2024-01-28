@@ -51,7 +51,11 @@
         <div class="status__container">
           <div
             class="status__highlight"
-            [ngClass]="{'active': data.status === 'Active', 'pending': data.status === 'Pending Approval', 'waiting': data.status === 'Waiting Compensation',}"
+            [ngClass]="{
+              active: data.status === 'Active',
+              pending: data.status === 'Pending Approval',
+              waiting: data.status === 'Waiting Compensation'
+            }"
           ></div>
           <div>
             {{ data.status }}
@@ -70,6 +74,4 @@
   </tbody>
 </table>
 
-<div *ngIf="filteredData.length === 0" class="no-data">
-  No data
-</div>
+<div *ngIf="filteredData.length === 0" class="no-data">No data</div>

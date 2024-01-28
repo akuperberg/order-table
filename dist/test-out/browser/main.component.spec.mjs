@@ -1,7 +1,7 @@
 import {
   OrdersTableComponent,
   init_orders_table_component
-} from "./chunk-UMM4BEC7.mjs";
+} from "./chunk-DKKJGVAR.mjs";
 import {
   Component,
   TestBed,
@@ -72,6 +72,18 @@ var require_main_component_spec = __commonJS({
       }));
       it("should create", () => {
         expect(component).toBeTruthy();
+      });
+      it("should render the breadcrumb element", () => {
+        const breadcrumbElement = fixture.nativeElement.querySelector(".breadcrumb");
+        expect(breadcrumbElement.textContent).toContain("Financial Management \xB7 CAPEX Management");
+      });
+      it("should render the header", () => {
+        const headerElement = fixture.nativeElement.querySelector("h2");
+        expect(headerElement.textContent).toContain("CEMEX Go Online Stores");
+      });
+      it("should render the app-orders-table component", () => {
+        const ordersTableComponent = fixture.nativeElement.querySelector("app-orders-table");
+        expect(ordersTableComponent).toBeTruthy();
       });
     });
   }
