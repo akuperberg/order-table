@@ -5,8 +5,8 @@ import { OrdersTableComponent } from '../orders-table/orders-table.component';
   selector: 'app-layout',
   standalone: true,
   imports: [OrdersTableComponent],
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.scss'
 })
 export class LayoutComponent {
 

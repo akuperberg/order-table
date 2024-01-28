@@ -1,0 +1,71 @@
+<div class="content-box flex">
+  <div class="checkbox-container">
+    <input
+      type="checkbox"
+      [(ngModel)]="isActive"
+      id="active"
+      name="active"
+      value="active"
+      (change)="filterData()"
+    />
+    <label for="active">Active</label>
+  </div>
+  <div class="checkbox-container">
+    <input
+      type="checkbox"
+      [(ngModel)]="isPending"
+      id="pending"
+      name="pending"
+      value="pending"
+      (change)="filterData()"
+    />
+    <label for="pending">Pending</label>
+  </div>
+  <div class="checkbox-container">
+    <input
+      type="checkbox"
+      [(ngModel)]="isWaiting"
+      id="waiting"
+      name="waiting"
+      value="waiting"
+      (change)="filterData()"
+    />
+    <label for="waiting">Waiting Compensation</label>
+  </div>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Status</th>
+      <th scope="col">Supplier Name</th>
+      <th scope="col">Month</th>
+      <th scope="col">Phase</th>
+      <th scope="col">Internal Order</th>
+      <th scope="col">Amount (USD)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of filteredData" class="content-box">
+      <td data-label="Status" class="status">
+        <div class="status__container">
+          <div
+            class="status__highlight"
+            [ngClass]="{'active': data.status === 'Active', 'pending': data.status === 'Pending Approval', 'waiting': data.status === 'Waiting Compensation',}"
+          ></div>
+          <div>
+            {{ data.status }}
+          </div>
+        </div>
+        <div class="amount-mobile">{{ data.amount | number : "1.2-2" }}</div>
+      </td>
+      <td data-label="Supplier Name">{{ data.supplierName }}</td>
+      <td data-label="Month">{{ data.month }}</td>
+      <td data-label="Phase">{{ data.phase }}</td>
+      <td data-label="Internal Order">{{ data.internalOrder }}</td>
+      <td data-label="Amount (USD)" class="amount">
+        {{ data.amount | number : "1.2-2" }}
+      </td>
+    </tr>
+  </tbody>
+</table>
